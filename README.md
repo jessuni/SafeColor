@@ -1,5 +1,5 @@
 # SafeColor
-SafeColor generates accessible colors that compiles with WCAG success criteria 1.4.3 (or any contrast ratio of your choice).
+SafeColor generates accessible colors that complies with WCAG success criteria 1.4.3 (or any contrast ratio of your choice).
 It can be used to:
 
 1. generate a random color that is contrast safe with a given color
