@@ -18,12 +18,15 @@ No need to worry about your base color is light/dark or for foreground/backgroun
 
 ### Basic
 
+This will assume that the generated color should be contrast safe (>= AA standard: 4.5) with black(rgb(0, 0, 0))
+
 ```javascript
-  // this will assume that the generated color should be contrast safe (>= AA standard: 4.5) with black(rgb(0, 0, 0))
   safeColor = new SafeColor()
+
   safeColor.random()
   // >> rgb(104, 145, 26)
   // contrast ratio = 5.65
+
   safeColor.random('hello world')
   // >> rgb(196,226,239)
   // contrast ratio = 15.47
@@ -33,11 +36,13 @@ No need to worry about your base color is light/dark or for foreground/backgroun
 ```javascript
   safeColor = new SafeColor({
     color: [255, 255, 255], // 8bit RGB value in array [r, g, b]
-    contrast: 4.5,  // the contrast ratio between the color above and the generated color will be larger or equal to this
+    contrast: 4.5,  // the contrast ratio between the option color and the generated color will >= this
   })
+
   safeColor.random()
   // >> rgb(32,80,46)
   // contrast ratio = 9.34
+
   safeColor.random('hello world')
   // >> rgb(20,57,74)
   // contrast ratio = 12.25
@@ -56,7 +61,7 @@ No need to worry about your base color is light/dark or for foreground/backgroun
 - default: `4.5`
 
 ## Notice
-ES6 features: destructing assignment and map is used in this script. You may need polyfill for the script to work properly.
+ES6 features: destructing assignment and map are used in this script. You may need polyfill for the script to work properly.
 
 Note: to keep this as simple as possible, the output is a RGB value in string. If any built-in conversions (to HEX, to HSL) will make SafeColor much more convenient for you, please contact me to add the feature or feel free to pull request. Cheers!
 
