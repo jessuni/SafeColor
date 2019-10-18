@@ -56,7 +56,7 @@ No need to worry about your base color is light/dark or for foreground/backgroun
 - default: `4.5`
 
 ## Notice
-ES6 destructing and map
+ES6 features: destructing assignment and map is used in this script. You may need polyfill for the script to work properly.
 
 Note: to keep this as simple as possible, the output is a RGB value in string. If any built-in conversions (to HEX, to HSL) will make SafeColor much more convenient for you, please contact me to add the feature or feel free to pull request. Cheers!
 
