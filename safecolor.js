@@ -6,6 +6,7 @@
 const _CONFIG = {
   color: [0, 0, 0],
   contrast: 4.5,
+  step: 0.05,
 }
 
 class SafeColor {
@@ -17,6 +18,7 @@ class SafeColor {
   constructor(options = {}) {
     this.color = options.color || _CONFIG.color
     this.contrast = options.contrast || _CONFIG.contrast
+    this.step = _CONFIG.step
     this.hash = 0
   }
 
@@ -127,15 +129,23 @@ class SafeColor {
     } else {
       const hsl = this._rgb2hsl(color)
       if (luma < this.minLuma) {
-        const step = this.minLuma - luma
-        hsl[2] = this.hash ? step + luma : (1 - hsl[2]) * Math.random() + hsl[2]
+        if (this.hash) {
+          const step = +(this.minLuma - luma).toFixed(2) || this.step
+          hsl[2] === 1 ? hsl[1] = Math.min(hsl[1] + step, 1) : hsl[2] = Math.min(hsl[2] + step, 1)
+        } else {
+          hsl[2] = (1 - hsl[2]) * Math.random() + hsl[2]
+        }
         color = this._hsl2rgb(hsl)
-        return this.launderColor(this.color, color)
+        return this.launderColor(color)
       } else {
-        const step = luma - this.maxLuma
-        hsl[2] = this.hash ? luma - step : Math.random() % hsl[2]
+        if (this.hash) {
+          const step = +(luma - this.maxLuma).toFixed(2) || this.step
+          hsl[2] === 0 ? hsl[1] = Math.max(0, hsl[1] - step, 0) : hsl[2] = Math.max(hsl[2] - step, 0)
+        } else {
+          hsl[2] = Math.random() % hsl[2]
+        }
         color = this._hsl2rgb(hsl)
-        return this.launderColor(this.color, color)
+        return this.launderColor(color)
       }
     }
   }
@@ -144,13 +154,14 @@ class SafeColor {
    * @param {String} str
    */
   random(str) {
+    this.hash = 0
     this.calValidLumaRange(this.color, this.contrast)
     if (this.minLuma === this.maxLuma) {
       this.genColor = this.minLuma ? [255, 255, 255] : [0, 0, 0]
       return
     }
     if (!str) {
-      this.genColor = [Math.random() * 255, Math.random() * 255, Math.random() * 255]
+      this.genColor = [0, 0, 0].map(v => Math.round(Math.random() * 255))
     } else {
       for (let i = 0; i < str.length; i++) {
         this.hash = str.charCodeAt(i) + ((this.hash << 5) - this.hash)
@@ -159,7 +170,7 @@ class SafeColor {
       this.genColor = [0, 0, 0]
       this.genColor = this.genColor.map((v, index) => (v = (this.hash >> (index * 8)) & 255))
     }
-    this.genColor = this.launderColor(this.color, this.genColor)
+    this.genColor = this.launderColor(this.genColor)
     return 'rgb(' + this.genColor + ')'
   }
 }
