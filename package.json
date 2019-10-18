@@ -2,7 +2,7 @@
   "name": "safecolor",
   "version": "1.0.0",
   "description": "SafeColor generates accessible colors that compiles with WCAG success criteria 1.4.3 (or any contrast ratio of your choice). It can generate either a random color that is contrast safe with a given color, or a consistent color for a given string.",
-  "main": "index.js",
+  "main": "safecolor.js",
   "scripts": {
     "test": "test"
   },
