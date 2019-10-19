@@ -1,12 +1,17 @@
 # SafeColor
-SafeColor generates accessible colors that complies with WCAG success criteria 1.4.3 (or any contrast ratio of your choice).
+SafeColor generates accessible colors that complies with [WCAG 2.1 success criteria 1.4.3](https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum) (or any contrast ratio of your choice).
 It can be used to:
 
 1. generate a random color that is contrast safe with a given color
 2. generate a consistent, contrast safe color for a string
 
-No need to worry about your base color is light/dark or for foreground/background. If the given color is too light to meet your desired contrast ratio, SafeColor will look for a darker color and vise versa.
+No need to worry about your base color being light/dark or for foreground/background. If the given color is too light to meet your desired contrast ratio, SafeColor will look for a darker color and vise versa.
 
+## A lot of libraries can generate arbitrary colors. Why the fuss?
+
+To improve web accessibility for people without color deficiencies, WCAG 2.1 requires that the visual presentation of text and images of text has a contrast ratio of at least 4.5:1(Level AA) or an enchanced contrast ratio of at least 7:1(Level AAA).
+
+Complying with this principle will improve the accessibility of your web contents.
 
 ## Install
 
@@ -18,7 +23,7 @@ No need to worry about your base color is light/dark or for foreground/backgroun
 
 ### Basic
 
-This will assume that the generated color should be contrast safe (>= AA standard: 4.5) with black(rgb(0, 0, 0))
+This will assume that the generated color should be contrast safe (>= Level AA: 4.5) with black(`rgb(0, 0, 0)`)
 
 ```javascript
   safeColor = new SafeColor()
@@ -35,8 +40,8 @@ This will assume that the generated color should be contrast safe (>= AA standar
 
 ```javascript
   safeColor = new SafeColor({
-    color: [255, 255, 255], // 8bit RGB value in array [r, g, b]
-    contrast: 4.5,  // the contrast ratio between the option color and the generated color will >= this
+    color: [255, 255, 255],
+    contrast: 4.5,
   })
 
   safeColor.random()
@@ -52,20 +57,19 @@ This will assume that the generated color should be contrast safe (>= AA standar
 
 **color**
 
+A base color. Should be 8bit RGB value in array `[r, g, b]`
+
 - type: `Array`
 - default: `[0, 0, 0]`
 
 **contrast**
 
+The minimum contrast ratio between the base color and the generated color.
+
 - type: `Number`
 - default: `4.5`
 
 ## Notice
-ES6 features: destructing assignment and map are used in this script. You may need polyfill for the script to work properly.
+ES6 features: destructing assignment and map are used in this script. You may need polyfills for the script to work properly.
 
 Note: to keep this as simple as possible, the output is a RGB value in string. If any built-in conversions (to HEX, to HSL) will make SafeColor much more convenient for you, please contact me to add the feature or feel free to pull request. Cheers!
-
-
-
-
-
