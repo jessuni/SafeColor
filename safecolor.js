@@ -158,9 +158,7 @@ class SafeColor {
     this.calValidLumaRange(this.color, this.contrast)
     if (this.minLuma === this.maxLuma) {
       this.genColor = this.minLuma ? [255, 255, 255] : [0, 0, 0]
-      return
-    }
-    if (!str) {
+    } else if (!str) {
       this.genColor = [0, 0, 0].map(v => Math.round(Math.random() * 255))
     } else {
       for (let i = 0; i < str.length; i++) {
