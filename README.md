@@ -1,5 +1,5 @@
 # SafeColor
-SafeColor generates accessible colors that complies with [WCAG 2.1 success criteria 1.4.3](https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum) (or any contrast ratio of your choice).
+SafeColor generates accessible colors that comply with [WCAG 2.1 success criteria 1.4.3](https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum) (or any contrast ratio of your choice).
 It can be used to:
 
 1. generate a random color that is contrast safe with a given color
@@ -9,7 +9,7 @@ No need to worry about your base color being light/dark or for foreground/backgr
 
 ## A lot of libraries can generate arbitrary colors. Why the fuss?
 
-To improve web accessibility for people without color deficiencies, WCAG 2.1 requires that the visual presentation of text and images of text has a contrast ratio of at least 4.5:1(Level AA) or an enchanced contrast ratio of at least 7:1(Level AAA).
+To improve web accessibility for people with color deficiencies, WCAG 2.1 requires that the visual presentation of text and images of text has a contrast ratio of at least 4.5:1(Level AA) or an enchanced contrast ratio of at least 7:1(Level AAA).
 
 Complying with this principle will improve the accessibility of your web contents.
 
